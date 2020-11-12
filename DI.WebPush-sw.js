@@ -1,1 +1,1 @@
-importScripts('https://jfc.ofsys.com/T/OFC4/WPS/64827/14911/FTjBtIivqW2D6dFKWW9qLrphY9CrY0jO/DI.WebPush-sw-lib.js');
+importScripts('https://deltadialoginsight.github.io/DI.Webpush.min.js');
