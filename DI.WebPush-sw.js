@@ -1,1 +1,1 @@
-importScripts('https://deltadialoginsight.github.io/DI.Webpush.min.js');
+importScripts('https://deltadialoginsight.github.io/DI.Webpush-sw-lib.js');
