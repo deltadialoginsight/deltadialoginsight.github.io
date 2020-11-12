@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://lightspeed.dev.ofsys.com/T/OFC4/WPS/2765/8588/aR5UlqxTGSWgaIAiA5ACC6EMhTXxbHOd/DI.WebPush-min.js"></script>
+</head>
+
+<body>
+    <h1>Test web push - Team Delta</h1>
+    <label>Adresse courriel du contact</label>
+    <input id="email" type="text" style="width:300px;" />
+    <input type="button" value="Identifier le contact" onclick="DI.WebPush.Identify('f_EMail', document.getElementById('email').value);" />
+    <input type="button" value="Reset identification" onclick="DI.WebPush.ResetIdentify();" />
+    <br/>
+    <br/>
+    <input type="button" value="Envoi du token" onclick="DI.WebPush.RequestPermission('fr');"  />
+</body>
+
+</html>
