@@ -1,25 +1,92 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset=utf-8 />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
+	<meta charset=utf-8 />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noindex, nofollow">
+	<title>Page de test pour les Web push</title>
+	<script> function showFeedback(param) { if(param != "") document.getElementById('feedback').innerHTML = "<strong>Ok!</strong>";	}</script>
+	<style>
+	body{	font-family: Arial, sans-serif; font-size: 14px; background-color: #eeeeee;}
+	.container{	max-width: 800px;	margin:0 auto; padding:15px; background-color: #ffffff; border-radius: 5px;}
+	.text-center{ text-align: center; }
+	.form-textbox, input{ padding:5px;font-size: 14px;}
+	.exemples { padding:10px 0;}
+	.exemples div { text-align:center;}
+	ul li, ol li{ padding-bottom:5px; }
+	h1{ text-align: center; }
+	</style>
+  <!-- Début - Code Web push Dialog Insight -->
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-messaging.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://lightspeed.dev.ofsys.com/T/OFC4/WPS/64827/14911/FTjBtIivqW2D6dFKWW9qLrphY9CrY0jO/DI.WebPush-min.js"></script>
+  <!-- Fin - Code Web push Dialog Insight -->
 </head>
-
 <body>
-    <h1>Test web push - Team Delta</h1>
-    <label>Adresse courriel du contact</label>
-    <input id="email" type="text" style="width:300px;" />
-    <input type="button" value="Identifier le contact" onclick="DI.WebPush.Identify('f_EMail', document.getElementById('email').value);" />
-    <input type="button" value="Reset identification" onclick="DI.WebPush.ResetIdentify();" />
-    <br/>
-    <br/>
-    <input type="button" value="Envoi du token" onclick="DI.WebPush.RequestPermission('fr');"  />
-</body>
+<div class="container">
+	<h1>Dialog Insight - Notifications web push</h1>
+	<p>Utilisez cette page afin de tester le fonctionnement des web push avant de les intégrer à votre site.</p>
+	<p><strong>Cette page ne fonctionne pas localement</strong>, vous devez d'abord suivre ces étapes :</p>
+	<ol>
+		<li>Dans le code HTML de cette page, copiez-collez le script fourni par Dialog Insight.</li>
+		<li>Téléverser le fichier "DI.WebPush-sw.js", fourni par Dialog Insight, à la racine de votre site.</li>
+		<li>Téléverser cette page sur votre site Web.</li>
+		<li>Visitez cette page à partir d'un navigateur supporté.</li>
+	</ol>
+	<p><a href="https://support.dialoginsight.com/fr/support/solutions/articles/1000277698">Consultez notre aide en ligne</a> afin d'obtenir plus d'informations.</p>
 
+	<h1>Exemples</h1>
+	<h2>Afficher la demande d'abonnement</h2>
+  <p>Déclencher la demande d'autorisation du navigateur avec un bouton. Vous pouvez aussi appeler cette fonction au chargement de votre page.</p>
+	<p><strong>Fonction</strong><br />
+	DI.WebPush.RequestPermission('CodeDeLangue');</p>
+
+	<div style="text-align:center;">
+		<input type="button" value="Recevoir les notifications en FR" onclick="DI.WebPush.RequestPermission('fr');" />
+		<input type="button" value="Recevoir les notifications en EN" onclick="DI.WebPush.RequestPermission('en');" /><br />
+	</div>
+
+	<div class="exemples">
+		<div>Chrome<br /><img src="https://cdn.dialoginsight.com/OFSYS/admin/webpush/WebPush-Browser-Authorization-Chrome.jpg" /></div>
+		<div>Firefox<br /><img src="https://cdn.dialoginsight.com/OFSYS/admin/webpush/WebPush-Browser-Authorization-Firefox.jpg" /></div>
+	</div>
+
+	<p><strong>Note</strong><br />Si la demande d'autorisation du navigateur ne s'affiche pas, c’est qu’elle est déjà Autorisée ou Bloquée.
+	Assurez-vous d’avoir choisi la valeur « Demander », dans Chrome, ou de n’avoir choisi aucune valeur, dans Firefox :</p>
+
+	<div class="exemples">
+		<div>Chrome<br /><img src="https://cdn.dialoginsight.com/OFSYS/admin/webpush/WebPush-Browser-Permission-Chrome.jpg" /></div>
+		<div>Firefox<br /><img src="https://cdn.dialoginsight.com/OFSYS/admin/webpush/WebPush-Browser-Permission-Firefox.jpg" /></div>
+	</div>
+
+
+	<h2>Identifier un contact (méthode avancée)</h2>
+	<p>Dans le code Javascript fourni, une fonction est disponible afin que vous puissiez identifier les abonnés si vous avez déjà des informations à leur sujet.
+	Par exemple, si votre site permet au visiteur de se connecter, vous avez donc déjà quelques informations comme le courriel, prénom, nom. Vous
+	pouvez utiliser la fonction Javascript "DI.WebPush.Identify" afin d'identifier l'abonnement au contact qui est présent dans votre liste de contact sur Dialog Insight.</p>
+
+	<p><strong>Fonction</strong><br />
+	DI.WebPush.Identify('f_CodeDuChampClé', 'Valeur');<br /><br />
+	<strong>Paramètres</strong><br />
+	"f_CodeDuChampClé" : Code du champ "clé unique". Vous pouvez trouver cette information à la page de configuration des champs de votre projet. Si votre projet contient
+	plus d'un clé unique, vous ne pourrez pas utiliser cette méthode d'identificaton.<br />
+	"Valeur" : Valeur à trouver dans la liste de contacts (votre projet) pour identifier le contact.
+	</p>
+
+	<strong>Exemple - Pour le champ clé unique courriel (f_EMail)</strong>
+	<ol>
+		<li>Ajoutez le contact dans votre projet Dialog Insight.</li>
+		<li>Tapez la valeur dans le champ suivant et cliquez sur « Identifier ».</li>
+		<li>Vous devriez voir 1 contact de plus reconnu sur Dialog Insight. Vous pouvez créer un groupe ciblant ces contacts.</li>
+	</ol>
+
+	<p>Valeur du champ clé unique (courriel) : <input id="email" type="text" class="form-textbox" style="width:300px;" />
+	<input type="button" value="Identifier" onclick="DI.WebPush.Identify('f_EMail', document.getElementById('email').value); showFeedback(document.getElementById('email').value);">
+	<span id="feedback"></span>
+	</p>
+
+</div><br /><br /> <br />
+</body>
 </html>
